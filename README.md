@@ -1,5 +1,5 @@
 # S-S-python-project
-
+Kasper Kappe 5349214
 I have two proposals:
 
 1: For work i did in the past, i created a script capable of reading a Mineral collection database file, interpreting the location of each sample with the use of Google Maps 
