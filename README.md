@@ -1,5 +1,5 @@
 # S-S-python-project
-Kasper Kappe 5349214
+Kasper Kappe 5349214!?
 
 Project name: GUI for a mineral collection mapping script
 
