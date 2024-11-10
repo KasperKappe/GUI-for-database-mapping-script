@@ -14,3 +14,7 @@ The new GUI is created using Tkinter.
 Example input and output:
 The original collection mapping code is provided in the file "base script". Example data for the base script is provided in the file "example data base script". The expected output of the base script using the example data is provided in the file "example output base script". 
 For the GUI version of the simplified base script, example data and an example output are also provided. They can be found in the files "example data GUI simplified" and "example output GUI simplified".
+
+Testing:
+To test the functions of the script, run:"pytest test_file1" or "pytest test_file2" in the CMD. Test file 1 contains one test function that works. Test file 2 contains a second function. However, since my code requires reading excel files and user interface interaction, it was very hard to make working test functions. I tried to ask ChatGPT for help but i could'nt get more than one function to work.
+
