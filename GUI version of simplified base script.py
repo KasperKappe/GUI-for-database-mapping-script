@@ -8,6 +8,31 @@ import os
 df = None
 
 def select_input_file():
+    """
+    Opens a file dialog for selecting an Excel file, loads the data into a DataFrame, 
+    and updates dropdown menus with column options for user selection.
+
+    This function uses a file dialog to prompt the user to select an Excel file (.xlsx). 
+    The file is then read into a global DataFrame (`df`). Column names from the DataFrame 
+    are extracted and used to populate dropdown menus for selecting columns for coordinates, 
+    specimen names, and descriptions.
+
+    Global Variables:
+        df (pd.DataFrame): The global DataFrame that holds the contents of the selected file.
+        input_file_path (tk.StringVar): A Tkinter variable storing the file path of the selected file.
+        coordinate_column (tk.StringVar): Tkinter variable for the coordinate column selection.
+        specimen_name_column (tk.StringVar): Tkinter variable for the specimen name column selection.
+        description_column (tk.StringVar): Tkinter variable for the description column selection.
+        coord_dropdown (tk.OptionMenu): Dropdown menu for coordinate column selection.
+        name_dropdown (tk.OptionMenu): Dropdown menu for specimen name column selection.
+        desc_dropdown (tk.OptionMenu): Dropdown menu for description column selection.
+
+    Exceptions:
+        Displays an error message dialog if an error occurs while loading the file.
+
+    Returns:
+        None
+    """
     global df
     filepath = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx")])
     input_file_path.set(filepath)
@@ -34,10 +59,52 @@ def select_input_file():
         messagebox.showerror("Error", f"An error occurred while loading the file: {e}")
 
 def select_output_folder():
+    """
+    Opens a directory selection dialog for the user to choose an output folder, 
+    and sets the selected folder path to a Tkinter variable.
+
+    This function prompts the user to select a folder through a dialog, 
+    and stores the path of the selected folder in a Tkinter `StringVar`.
+
+    Global Variables:
+        output_folder_path (tk.StringVar): A Tkinter variable that stores the path 
+                                           of the chosen output folder.
+
+    Returns:
+        None
+    """
     folderpath = filedialog.askdirectory()
     output_folder_path.set(folderpath)
 
 def process_data():
+    """
+    Processes the selected data and generates an interactive map with specimen markers, 
+    saving the result to an HTML file.
+
+    This function uses the selected columns for coordinates, specimen name, and description 
+    from a loaded DataFrame (`df`). It retrieves user-selected settings for zoom level and output 
+    folder, creates a map centered on (0, 0), and adds markers for each specimen based on 
+    coordinate data. The map is saved as an HTML file in the specified output folder.
+
+    Global Variables:
+        df (pd.DataFrame): The global DataFrame containing specimen data.
+        coordinate_column (tk.StringVar): Selected column for coordinates.
+        specimen_name_column (tk.StringVar): Selected column for specimen names.
+        description_column (tk.StringVar): Selected column for descriptions.
+        zoom_level_var (tk.StringVar): The zoom level for the map, set by the user.
+        output_folder_path (tk.StringVar): The path to the folder where the output HTML file will be saved.
+
+    Raises:
+        ValueError: If no data is loaded, required columns are not selected, selected columns are not 
+                    in the data, the output folder is not selected, or if coordinate data is in 
+                    an invalid format.
+
+    Exceptions:
+        Displays an error dialog if any unexpected error occurs during data processing.
+
+    Returns:
+        None
+    """    
     try:
         global df
         if df is None:
