@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "GUI-for-database-mapping-script-PACKAGE"
+version = "0.1.0"
+description = "A package for installing a GUI version of a database data mapping script, a script that makes an interactive Folium map out of an excel file containing coördinates."
+authors = [ 
+    {name = "Kasper Kappe", email = "kasperkappe@gmail.com"},
+]
+dependencies = ["numpy", "pandas", "tkinter", "os", "folium", "pytest", "unittest", "geopy.geocoders", "geopandas"]
